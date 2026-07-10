@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayesha Farooq</title>
+<style>
+  :root{
+    --bg:#0d0d0d;
+    --text:#e8e8e8;
+    --muted:#8a8a8a;
+    --link:#f5a623;
+    --border:#2a2a2a;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    line-height:1.7;
+  }
+  a{ color:var(--link); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:0 24px; }
+
+  .sidebar{
+    position:fixed;
+    top:60px; left:40px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    z-index:10;
+  }
+  .sidebar button{
+    background:none;
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:10px 26px;
+    font-family:inherit;
+    font-size:0.9rem;
+    cursor:pointer;
+    text-align:left;
+    transition:.2s;
+  }
+  .sidebar button:hover{ border-color:var(--link); color:var(--link); }
+  .sidebar button.active{ border-color:var(--link); color:var(--link); background:#1a1a1a; }
+
+  .page{
+    display:none;
+    min-height:100vh;
+    padding:90px 24px 90px 260px;
+  }
+  .page.active{ display:block; }
+
+  #home.active{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:14px;
+    padding-left:24px;
+  }
+  .hero .line{ font-size:1.1rem; }
+  .hero .name{ font-size:1.6rem; font-weight:bold; }
+  .cursor{
+    display:inline-block;
+    width:9px; height:1.1rem;
+    background:var(--text);
+    margin-left:3px;
+    animation: blink 1s step-end infinite;
+    vertical-align:middle;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .socials{ display:flex; gap:22px; margin-top:14px; align-items:center; }
+  .socials a{ color:var(--text); display:inline-flex; }
+  .socials svg{ width:24px; height:24px; }
+  .socials a:hover{ color:var(--link); }
+
+  .navbtns{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:30px;
+  }
+  .navbtns button{
+    background:none;
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:10px 22px;
+    font-family:inherit;
+    font-size:0.9rem;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .navbtns button:hover{ border-color:var(--link); color:var(--link); }
+
+  h2{ font-size:1.8rem; margin-bottom:40px; }
+  h2::before{ content:"> "; color:var(--link); }
+
+  .item{ margin-bottom:34px; }
+  .item h3{ font-size:1.15rem; margin-bottom:4px; }
+  .item .meta{ color:var(--muted); font-size:0.85rem; margin-bottom:8px; }
+  .item p, .item li{ color:#c9c9c9; font-size:0.95rem; }
+  .item ul{ padding-left:20px; margin-top:6px; }
+  .item li{ margin-bottom:4px; }
+  .item a.repo{ font-size:0.85rem; display:inline-block; margin-top:4px; }
+
+  ::selection{ background:var(--link); color:#000; }
+
+  @media(max-width:800px){
+    .sidebar{
+      position:static;
+      flex-direction:row;
+      flex-wrap:wrap;
+      margin:20px 24px 0;
+    }
+    .page{ padding:20px 24px 60px; }
+    #home.active{ padding-left:24px; padding-top:60px; }
+    .hero .name{ font-size:1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+  <button data-page="home" class="active">Home</button>
+  <button data-page="projects">Projects</button>
+  <button data-page="skills">Skills</button>
+  <button data-page="education">Education</button>
+  <button data-page="experience">Experience</button>
+  <button data-page="achievements">Achievements</button>
+  <a href="Ayesha_Farooq_CV.pdf"><button type="button">Resume</button></a>
+</div>
+
+<div class="page active hero" id="home">
+  <div class="line">&gt; Hello World!</div>
+  <div class="line name">&gt; I'm Ayesha Farooq!<span class="cursor"></span></div>
+  <div class="line" id="typedLine" style="min-height:1.6em;"></div>
+  <div class="line">&gt; reach me at ayesha.farooq.cs93@gmail.com</div>
+
+  <div class="socials">
+    <a href="https://github.com/ayesha-cs-93" target="_blank" title="GitHub" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.94.57.1.78-.25.78-.55v-2.17c-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.05 0 0 .98-.31 3.2 1.18a11.1 11.1 0 015.83 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.59.23 2.76.11 3.05.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.4-5.25 5.69.42.36.79 1.08.79 2.17v3.22c0 .3.21.66.79.55A11.5 11.5 0 0023.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/ayesh-farooq-cs" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.33V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.48v6.26zM5.34 7.43a2.07 2.07 0 11-.01-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+    </a>
+  </div>
+
+  <div class="navbtns">
+    <button data-page="projects">Projects</button>
+    <button data-page="skills">Skills</button>
+    <button data-page="education">Education</button>
+    <button data-page="experience">Experience</button>
+    <button data-page="achievements">Achievements</button>
+  </div>
+</div>
+
+<div class="page" id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+
+    <div class="item">
+      <h3>Brain Tumor Classification</h3>
+      <div class="meta">Machine Learning</div>
+      <p>Built a Random Forest classifier in Python to detect brain tumors from a medical imaging dataset. Identified and corrected data leakage issues in the original pipeline to ensure the model's evaluation results were reliable rather than artificially inflated.</p>
+      <a class="repo" href="https://github.com/ayesha-cs-93/brain-tumor-classification" target="_blank">→ github.com/ayesha-cs-93/brain-tumor-classification</a>
+    </div>
+
+    <div class="item">
+      <h3>Podcast Platform UI</h3>
+      <div class="meta">NSoC'26 — Open Source Contribution</div>
+      <p>A dashboard interface built with custom CSS grids, glassmorphism styling, and animations.</p>
+      <a class="repo" href="https://github.com/ayesha-cs-93/Podcast-Platform-UI" target="_blank">→ github.com/ayesha-cs-93/Podcast-Platform-UI</a><br>
+      <a class="repo" href="https://openxstudio.vercel.app/" target="_blank">→ Live demo</a>
+    </div>
+
+    <div class="item">
+      <h3>Predicting Student Health Risk — Kaggle Playground Series (S6E7)</h3>
+      <div class="meta">Machine Learning Competition</div>
+      <p>Built and submitted a predictive model to classify student health risk levels for Kaggle's Playground Series competition. Achieved a public leaderboard score of 0.90324.</p>
+      <a class="repo" href="https://github.com/ayesha-cs-93/student-health-risk-prediction.git" target="_blank">→ github.com/ayesha-cs-93/student-health-risk-prediction</a>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="item">
+      <h3>Programming</h3>
+      <p>Python, JavaScript</p>
+    </div>
+    <div class="item">
+      <h3>Web Development</h3>
+      <p>HTML5, CSS3 (animations & layouts), Bootstrap</p>
+    </div>
+    <div class="item">
+      <h3>Data Science / ML</h3>
+      <p>Pandas, Scikit-learn, Data Cleaning, Exploratory Data Analysis</p>
+    </div>
+    <div class="item">
+      <h3>Tools</h3>
+      <p>Git, GitHub, VS Code, Canva</p>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="education">
+  <div class="wrap">
+    <h2>Education</h2>
+    <div class="item">
+      <h3>Bachelor of Science in Computer Science</h3>
+      <div class="meta">University of Narowal — 2023 to Present</div>
+    </div>
+    <div class="item">
+      <h3>F.Sc Pre-Engineering</h3>
+      <div class="meta">2021 to 2023</div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+
+    <div class="item">
+      <h3>Intern — Fly Rank</h3>
+      <div class="meta">Internship — Currently awaiting first task assignment</div>
+      <ul>
+        <li>Selected for the internship program.</li>
+        <li><a href="https://internship.flyrank.ai/intern" target="_blank">→ internship.flyrank.ai/intern</a></li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>Open Source Contributor</h3>
+      <div class="meta">NSoC'26</div>
+      <ul>
+        <li>Contributed to an open-source web project, resolving folder structure and configuration issues.</li>
+        <li>Built the Podcast Platform UI dashboard as part of the contribution.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>Freelance Graphic Design</h3>
+      <div class="meta">Self-directed</div>
+      <ul>
+        <li>Designed social media posts, logos, and posters using Canva for personal and freelance projects.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="achievements">
+  <div class="wrap">
+    <h2>Achievements</h2>
+    <div class="item">
+      <p>• Kaggle Playground Series Competition — Public leaderboard score: 0.90324</p>
+      <p>• Selected for Fly Rank Internship</p>
+      <p>• Open Source Contributor — NSoC'26</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const goal = "I'm a CS student aiming to build my future in AI & Machine Learning.";
+  const el = document.getElementById('typedLine');
+  let i = 0;
+  function type(){
+    if(i <= goal.length){
+      el.textContent = "> " + goal.slice(0, i);
+      i++;
+      setTimeout(type, 35);
+    }
+  }
+  type();
+
+  const pages = document.querySelectorAll('.page');
+  const navButtons = document.querySelectorAll('[data-page]');
+
+  function showPage(name){
+    pages.forEach(p => p.classList.toggle('active', p.id === name));
+    document.querySelectorAll('.sidebar button').forEach(b => {
+      b.classList.toggle('active', b.dataset.page === name);
+    });
+    history.replaceState(null, '', '#' + name);
+    window.scrollTo(0,0);
+  }
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => showPage(btn.dataset.page));
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#','');
+    if(hash && document.getElementById(hash)){
+      showPage(hash);
+    }
+  });
+</script>
+
+</body>
+</html>
